@@ -14,7 +14,7 @@
 // build and compile our shader zprogram
 // ------------------------------------
 Shader lightingShader("lighting.vert", "lighting.frag");
-Shader lightCubeShader("light_cube.vert", "light_cube.vert");
+Shader lightCubeShader("light_cube.vert", "light_cube.frag");
 
 unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
 
