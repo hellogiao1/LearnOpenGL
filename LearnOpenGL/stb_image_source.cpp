@@ -18,7 +18,8 @@ Shader lightCubeShader("light_cube.vert", "light_cube.frag");
 
 unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
 
-data = stbi_load("awesomeface.png", &width, &height, &nrChannels, 0);
+unsigned int diffuseMap = loadTexture("container2.png");
+unsigned int specularMap = loadTexture("container2_specular.png");
 
 // ImGui interface
 
