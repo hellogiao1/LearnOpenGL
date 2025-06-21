@@ -126,7 +126,7 @@ int main()
 
         // directional light
         dirLight.Draw(projection);
-        //pointLight.Draw(projection);
+        pointLight.Draw(projection);
 
         ourShader.use();
         // render the loaded model

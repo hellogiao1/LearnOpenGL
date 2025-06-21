@@ -86,6 +86,7 @@ public:
 
         for (int i = 0; i < InPointNum; i++)
         {
+            // pointLights[i]
             const string& pointLightName = "pointLights[" + to_string(i) + "]";
 
             model_shader_.setVec3(pointLightName + ".position", G_pointLightPositions[0]);
@@ -96,6 +97,18 @@ public:
             model_shader_.setFloat(pointLightName + ".linear", 0.09f);
             model_shader_.setFloat(pointLightName + ".quadratic", 0.032f);
         }
+
+        // spotLight
+        /*lightingShader.setVec3("spotLight.position", camera.Position);
+        lightingShader.setVec3("spotLight.direction", camera.Front);
+        lightingShader.setVec3("spotLight.ambient", 0.0f, 0.0f, 0.0f);
+        lightingShader.setVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
+        lightingShader.setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
+        lightingShader.setFloat("spotLight.constant", 1.0f);
+        lightingShader.setFloat("spotLight.linear", 0.09f);
+        lightingShader.setFloat("spotLight.quadratic", 0.032f);
+        lightingShader.setFloat("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
+        lightingShader.setFloat("spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));*/
     }
 
     void Draw(const glm::mat4& projection)
