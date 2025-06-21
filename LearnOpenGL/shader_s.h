@@ -72,6 +72,16 @@ public:
         glDeleteShader(vertex);
         glDeleteShader(fragment);
     }
+
+    // print error info
+    void printError() const
+    {
+        GLenum err = glGetError();
+        if (err != GL_NO_ERROR) {
+            std::cerr << "OpenGL error: " << err << std::endl;
+        }
+    }
+    
     // activate the shader
     // ------------------------------------------------------------------------
     void use()
@@ -83,30 +93,36 @@ public:
     void setBool(const std::string& name, bool value) const
     {
         glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
+        printError();
     }
     // ------------------------------------------------------------------------
     void setInt(const std::string& name, int value) const
     {
         glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+        printError();
     }
     // ------------------------------------------------------------------------
     void setFloat(const std::string& name, float value) const
     {
         glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
+        printError();
     }
     // ------------------------------------------------------------------------
     void setMat4(const std::string& name, const glm::mat4& trans = glm::mat4(1.f)) const
     {
         glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(trans));
+        printError();
     }
     // ------------------------------------------------------------------------
     void setVec3(const std::string& name, float value1, float value2, float value3) const
     {
         glUniform3f(glGetUniformLocation(ID, name.c_str()), value1, value2, value3);
+        printError();
     }
     void setVec3(const std::string& name, const glm::vec3& value) const
     {
         glUniform3f(glGetUniformLocation(ID, name.c_str()), value.x, value.y, value.z);
+        printError();
     }
 
 private:

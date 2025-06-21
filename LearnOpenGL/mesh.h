@@ -59,6 +59,11 @@ public:
     // render the mesh
     void Draw(Shader &shader) 
     {
+        GLenum err = glGetError();
+        if (err != GL_NO_ERROR) {
+            std::cerr << "OpenGL error: " << err << std::endl;
+        }
+        glBindVertexArray(VAO);
         // bind appropriate textures
         unsigned int diffuseNr  = 1;
         unsigned int specularNr = 1;
@@ -86,9 +91,16 @@ public:
         }
         
         // draw mesh
-        glBindVertexArray(VAO);
+        err = glGetError();
+        if (err != GL_NO_ERROR) {
+            std::cerr << "OpenGL error: " << err << std::endl;
+        }
         glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
+        err = glGetError();
+        if (err != GL_NO_ERROR) {
+            std::cerr << "OpenGL error: " << err << std::endl;
+        }
 
         // always good practice to set everything back to defaults once configured.
         glActiveTexture(GL_TEXTURE0);

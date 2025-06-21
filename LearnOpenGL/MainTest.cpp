@@ -9,6 +9,7 @@
 
 #include "camera.h"
 #include "model.h"
+#include "Light/LightCombine.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -77,10 +78,15 @@ int main()
     // build and compile shaders
     // -------------------------
     Shader ourShader("lighting.vert", "lighting.frag");
+    Shader lightCubeShader("light_cube.vert", "light_cube.frag");
 
     // load models
     // -----------
     Model ourModel("resources/objects/backpack/backpack.obj");
+
+    // Light
+    DirectionalLight dirLight(ourShader, lightCubeShader, camera);
+    PointLight pointLight(ourShader, lightCubeShader, camera);
 
     
     // draw in wireframe
@@ -108,11 +114,9 @@ int main()
         // don't forget to enable shader before setting uniforms
         ourShader.use();
 
-        // directional light
-        ourShader.setVec3("dirLight.direction", -0.2f, -1.0f, -0.3f);
-        ourShader.setVec3("dirLight.ambient", 0.05f, 0.05f, 0.05f);
-        ourShader.setVec3("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
-        ourShader.setVec3("dirLight.specular", 0.5f, 0.5f, 0.5f);
+        // be sure to activate shader when setting uniforms/drawing objects
+        ourShader.setVec3("viewPos", camera.Position);
+        ourShader.setFloat("material.shininess", 32.0f);
 
         // view/projection transformations
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
@@ -120,6 +124,11 @@ int main()
         ourShader.setMat4("projection", projection);
         ourShader.setMat4("view", view);
 
+        // directional light
+        dirLight.Draw(projection);
+        //pointLight.Draw(projection);
+
+        ourShader.use();
         // render the loaded model
         glm::mat4 model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
