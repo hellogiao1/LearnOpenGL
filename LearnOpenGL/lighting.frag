@@ -1,6 +1,9 @@
 #version 330 core
 out vec4 FragColor;
 
+uniform sampler2D texture_diffuse1;
+uniform sampler2D texture_specular1;
+
 struct Material {
     sampler2D diffuse;
     sampler2D specular;
@@ -51,11 +54,14 @@ void main()
     vec3 result = CalcDirLight(dirLight, norm, viewDir);
     // 第二阶段：点光源
     for(int i = 0; i < NR_POINT_LIGHTS; i++)
-    result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
+    {
+        result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
+    }
     // 第三阶段：聚光
     //result += CalcSpotLight(spotLight, norm, FragPos, viewDir);    
 
-    FragColor = vec4(result, 1.0);
+    //FragColor = vec4(result, 1.0);
+    FragColor = vec4(vec3(texture(texture_diffuse1, TexCoords)), 1.f);
 }
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
@@ -67,9 +73,9 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
     vec3 reflectDir = reflect(-lightDir, normal);
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
     // 合并结果
-    vec3 ambient  = light.ambient  * vec3(texture(material.diffuse, TexCoords));
-    vec3 diffuse  = light.diffuse  * diff * vec3(texture(material.diffuse, TexCoords));
-    vec3 specular = light.specular * spec * vec3(texture(material.specular, TexCoords));
+    vec3 ambient  = light.ambient  * vec3(texture(texture_diffuse1, TexCoords));
+    vec3 diffuse  = light.diffuse  * diff * vec3(texture(texture_diffuse1, TexCoords));
+    vec3 specular = light.specular * spec * vec3(texture(texture_specular1, TexCoords));
     return (ambient + diffuse + specular);
 }
 
