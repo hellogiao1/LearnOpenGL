@@ -87,7 +87,7 @@ int main()
     // Light
     DirectionalLight dirLight(ourShader, lightCubeShader, camera);
     PointLight pointLight(ourShader, lightCubeShader, camera);
-
+    SpotLight spotLight(ourShader, lightCubeShader, camera);
     
     // draw in wireframe
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -127,6 +127,7 @@ int main()
         // directional light
         dirLight.Draw(projection);
         pointLight.Draw(projection);
+        spotLight.Draw(projection);
 
         ourShader.use();
         // render the loaded model

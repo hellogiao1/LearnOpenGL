@@ -10,11 +10,6 @@ extern float G_vertices[];
 extern glm::vec3 G_cubePositions[];
 extern glm::vec3 G_pointLightPositions[];
 
-template<typename T, size_t N>
-constexpr size_t arraySize(T (&array)[N]) {
-    return N;
-}
-
 class LightBase
 {
 public:
@@ -23,7 +18,14 @@ public:
     light_shader_(InLightShader),
     camera_(InCamera)
     {
+        if (!bEnableLighting)
+            return;
         SetUp();
+    }
+
+    void EnableLighting(bool InEnableLighting)
+    {
+        bEnableLighting = InEnableLighting;
     }
 
 protected:
@@ -36,6 +38,8 @@ protected:
     Shader& model_shader_;
     Shader& light_shader_;
     Camera& camera_;
+
+    bool bEnableLighting = true;
 };
 
 class DirectionalLight : public LightBase
@@ -44,6 +48,9 @@ public:
     DirectionalLight(Shader& InModelShader, Shader& InLightShader,Camera& InCamera)
     : LightBase(InModelShader,InLightShader, InCamera)
     {
+        if (!bEnableLighting)
+            return;
+        
         model_shader_.use();
         
         model_shader_.setVec3("viewPos", camera_.Position);
@@ -58,6 +65,9 @@ public:
 
     void Draw(const glm::mat4& projection)
     {
+        if (!bEnableLighting)
+            return;
+        
         glBindVertexArray(lightCubeVAO);
         // also draw the lamp object(s)
         light_shader_.use();
@@ -82,6 +92,9 @@ public:
     PointLight(Shader& InModelShader, Shader& InLightShader,Camera& InCamera ,int InPointNum = 4)
     : LightBase(InModelShader,InLightShader, InCamera)
     {
+        if (!bEnableLighting)
+            return;
+        
         model_shader_.use();
 
         for (int i = 0; i < InPointNum; i++)
@@ -97,22 +110,13 @@ public:
             model_shader_.setFloat(pointLightName + ".linear", 0.09f);
             model_shader_.setFloat(pointLightName + ".quadratic", 0.032f);
         }
-
-        // spotLight
-        /*lightingShader.setVec3("spotLight.position", camera.Position);
-        lightingShader.setVec3("spotLight.direction", camera.Front);
-        lightingShader.setVec3("spotLight.ambient", 0.0f, 0.0f, 0.0f);
-        lightingShader.setVec3("spotLight.diffuse", 1.0f, 1.0f, 1.0f);
-        lightingShader.setVec3("spotLight.specular", 1.0f, 1.0f, 1.0f);
-        lightingShader.setFloat("spotLight.constant", 1.0f);
-        lightingShader.setFloat("spotLight.linear", 0.09f);
-        lightingShader.setFloat("spotLight.quadratic", 0.032f);
-        lightingShader.setFloat("spotLight.cutOff", glm::cos(glm::radians(12.5f)));
-        lightingShader.setFloat("spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));*/
     }
 
     void Draw(const glm::mat4& projection)
     {
+        if (!bEnableLighting)
+            return;
+        
         glBindVertexArray(lightCubeVAO);
         light_shader_.use();
 
@@ -129,5 +133,39 @@ public:
             light_shader_.setMat4("model", model);
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
+    }
+};
+
+class SpotLight : public LightBase
+{
+public:
+    SpotLight(Shader& InModelShader, Shader& InLightShader,Camera& InCamera)
+   : LightBase(InModelShader,InLightShader, InCamera)
+    {
+        if (!bEnableLighting)
+            return;
+        
+        model_shader_.use();
+
+        // pointLights[i]
+        const string& pointLightName = "spotLight";
+        model_shader_.setVec3(pointLightName + ".position", camera_.Position);
+        model_shader_.setVec3(pointLightName + ".direction", camera_.Front);
+        model_shader_.setVec3(pointLightName + ".ambient", 0.05f, 0.05f, 0.05f);
+        model_shader_.setVec3(pointLightName + ".diffuse", 0.8f, 0.8f, 0.8f);
+        model_shader_.setVec3(pointLightName + ".specular", 1.0f, 1.0f, 1.0f);
+        model_shader_.setFloat(pointLightName + ".cutOff", glm::cos(glm::radians(12.5f)));
+        model_shader_.setFloat(pointLightName + ".outerCutOff", glm::cos(glm::radians(17.5f)));
+    }
+
+    void Draw(const glm::mat4& projection)
+    {
+        if (!bEnableLighting)
+            return;
+
+        model_shader_.use();
+        const string& pointLightName = "spotLight";
+        model_shader_.setVec3(pointLightName + ".position", camera_.Position);
+        model_shader_.setVec3(pointLightName + ".direction", camera_.Front);
     }
 };
