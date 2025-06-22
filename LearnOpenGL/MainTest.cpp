@@ -10,6 +10,7 @@
 #include "shader_s.h"
 
 #include <iostream>
+#include <vector>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void mouse_callback(GLFWwindow* window, double xpos, double ypos);
@@ -164,16 +165,36 @@ int main()
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glBindVertexArray(0);
+    // grass VAO vegetationVAO
+    unsigned int vegetationVAO;
+    glGenVertexArrays(1, &vegetationVAO);
+    glBindVertexArray(vegetationVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glBindVertexArray(0);
 
     // load textures
     // -------------
+    stbi_set_flip_vertically_on_load(true);
     unsigned int cubeTexture = loadTexture("resources/textures/marble.jpg");
     unsigned int floorTexture = loadTexture("resources/textures/metal.png");
+    unsigned int grassTexture = loadTexture("resources/textures/grass.png");
+
+    std::vector<glm::vec3> vegetation;
+    vegetation.push_back(glm::vec3(-1.5f,  0.0f, -0.48f));
+    vegetation.push_back(glm::vec3( 1.5f,  0.0f,  0.51f));
+    vegetation.push_back(glm::vec3( 0.0f,  0.0f,  0.7f));
+    vegetation.push_back(glm::vec3(-0.3f,  0.0f, -2.3f));
+    vegetation.push_back(glm::vec3( 0.5f,  0.0f, -0.6f));
 
     // shader configuration
     // --------------------
     shader.use();
-    shader.setInt("texture1", 0);
+    shader.setInt("texture_diffuse1", 0);
 
     // render loop
     // -----------
@@ -297,6 +318,17 @@ int main()
         glStencilMask(0xFF);
         glStencilFunc(GL_ALWAYS, 0, 0xFF);
         glEnable(GL_DEPTH_TEST);*/
+
+        glBindVertexArray(vegetationVAO);
+        glBindTexture(GL_TEXTURE_2D, grassTexture);
+        shader.use();
+        for(unsigned int i = 0; i < vegetation.size(); i++) 
+        {
+            model = glm::mat4(1.0f);
+            model = glm::translate(model, vegetation[i]);               
+            shader.setMat4("model", model);
+            glDrawArrays(GL_TRIANGLES, 0, 6);
+        }
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

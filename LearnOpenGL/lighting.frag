@@ -78,7 +78,10 @@ void main()
 
     //FragColor = vec4(result, 1.0);
     //FragColor = vec4(vec3(gl_FragCoord.z), 1.0);
-    FragColor = vec4(vec3(texture(texture_diffuse1, TexCoords)), 1.0);
+    vec4 texColor = texture(texture_diffuse1, TexCoords);
+    if (texColor.a < 0.1)
+        discard;
+    FragColor = texColor;
     //FragColor = vec4(vec3(texture(texture_diffuse1, TexCoords)), 1.f);
 }
 
