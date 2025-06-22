@@ -121,7 +121,7 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     float epsilon   = light.cutOff - light.outerCutOff;
     float intensity = clamp((theta - light.outerCutOff) / epsilon, 0.0, 1.0);
 
-    /**lightDir = -lightDir;
+    lightDir = -lightDir;
     // 漫反射着色
     float diff = max(dot(normal, lightDir), 0.0);
     // 镜面光着色
@@ -130,29 +130,10 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     // 合并结果
     vec3 ambient  = light.ambient  * vec3(texture(texture_diffuse1, TexCoords));
     vec3 diffuse  = light.diffuse  * diff * vec3(texture(texture_diffuse1, TexCoords));
-    vec3 specular = light.specular * spec * vec3(texture(texture_specular1, TexCoords));*/
-
-    vec3 result;
-    if(theta > light.cutOff)
-    {
-        // 执行光照计算
-        lightDir = -lightDir;
-        // 漫反射着色
-        float diff = max(dot(normal, lightDir), 0.0);
-        // 镜面光着色
-        vec3 reflectDir = reflect(-lightDir, normal);
-        float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-        // 合并结果
-        vec3 ambient  = light.ambient  * vec3(texture(texture_diffuse1, TexCoords));
-        vec3 diffuse  = light.diffuse  * diff * vec3(texture(texture_diffuse1, TexCoords));
-        vec3 specular = light.specular * spec * vec3(texture(texture_specular1, TexCoords));
-        result = ambient + diffuse + specular;
-    }
-    else  // 否则，使用环境光，让场景在聚光之外时不至于完全黑暗
-        result = light.ambient * vec3(texture(material.diffuse, TexCoords));
+    vec3 specular = light.specular * spec * vec3(texture(texture_specular1, TexCoords));
     
-   /** // 将不对环境光做出影响，让它总是能有一点光
+    // 将不对环境光做出影响，让它总是能有一点光
     diffuse  *= intensity;
-    specular *= intensity;*/
-    return result;
+    specular *= intensity;
+    return ambient + diffuse + specular;
 }
