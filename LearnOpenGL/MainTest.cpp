@@ -183,7 +183,7 @@ int main()
     // -------------
     unsigned int cubeTexture = loadTexture("resources/textures/marble.jpg");
     unsigned int floorTexture = loadTexture("resources/textures/metal.png");
-    unsigned int transparentTexture = loadTexture("resources/textures/grass.png");
+    unsigned int transparentTexture = loadTexture("resources/textures/blending_transparent_window.png");
 
     // transparent vegetation locations
     // --------------------------------
@@ -195,6 +195,9 @@ int main()
         glm::vec3(-0.3f, 0.0f, -2.3f),
         glm::vec3 (0.5f, 0.0f, -0.6f)
     };
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // shader configuration
     // --------------------
