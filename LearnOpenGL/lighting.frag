@@ -76,7 +76,9 @@ void main()
     // 第三阶段：聚光
     result += CalcSpotLight(spotLight, norm, FragPos, viewDir);    
 
-    FragColor = vec4(result, 1.0);
+    //FragColor = vec4(result, 1.0);
+    //FragColor = vec4(vec3(gl_FragCoord.z), 1.0);
+    FragColor = vec4(vec3(texture(texture_diffuse1, TexCoords)), 1.0);
     //FragColor = vec4(vec3(texture(texture_diffuse1, TexCoords)), 1.f);
 }
 
