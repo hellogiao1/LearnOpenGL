@@ -13,10 +13,11 @@ extern glm::vec3 G_pointLightPositions[];
 class LightBase
 {
 public:
-    LightBase(Shader& InModelShader, Shader& InLightShader,Camera& InCamera):
+    LightBase(Shader& InModelShader, Shader& InLightShader,Camera& InCamera, bool InEnableLighting = true):
     model_shader_(InModelShader),
     light_shader_(InLightShader),
-    camera_(InCamera)
+    camera_(InCamera),
+    bEnableLighting(InEnableLighting)
     {
         if (!bEnableLighting)
             return;
@@ -45,9 +46,10 @@ protected:
 class DirectionalLight : public LightBase
 {
 public:
-    DirectionalLight(Shader& InModelShader, Shader& InLightShader,Camera& InCamera)
-    : LightBase(InModelShader,InLightShader, InCamera)
+    DirectionalLight(Shader& InModelShader, Shader& InLightShader,Camera& InCamera, bool InEnableLighting = true)
+    : LightBase(InModelShader,InLightShader, InCamera, InEnableLighting)
     {
+        set_enable_lighting_calc();
         if (!bEnableLighting)
             return;
         
@@ -84,14 +86,24 @@ public:
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
     }
+
+    void set_enable_lighting_calc() const
+    {
+        // 设置Shader代码里面的光照计算是否启用
+        model_shader_.use();
+        model_shader_.setBool("dirLight.enable", bEnableLighting);
+    }
 };
 
 class PointLight : public LightBase
 {
+private:
+    int point_num;
 public:
-    PointLight(Shader& InModelShader, Shader& InLightShader,Camera& InCamera ,int InPointNum = 4)
-    : LightBase(InModelShader,InLightShader, InCamera)
+    PointLight(Shader& InModelShader, Shader& InLightShader,Camera& InCamera , bool InEnableLighting = true, int InPointNum = 4)
+    : LightBase(InModelShader,InLightShader, InCamera, InEnableLighting), point_num(InPointNum)
     {
+        set_enable_lighting_calc();
         if (!bEnableLighting)
             return;
         
@@ -134,14 +146,27 @@ public:
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
     }
+
+    void set_enable_lighting_calc() const
+    {
+        // 设置Shader代码里面的光照计算是否启用
+        model_shader_.use();
+        for (int i = 0; i < point_num; i++)
+        {
+            // pointLights[i]
+            const string& pointLightName = "pointLights[" + to_string(i) + "]";
+            model_shader_.setBool(pointLightName + ".enable", bEnableLighting);
+        }
+    }
 };
 
 class SpotLight : public LightBase
 {
 public:
-    SpotLight(Shader& InModelShader, Shader& InLightShader,Camera& InCamera)
-   : LightBase(InModelShader,InLightShader, InCamera)
+    SpotLight(Shader& InModelShader, Shader& InLightShader,Camera& InCamera, bool InEnableLighting = true)
+   : LightBase(InModelShader,InLightShader, InCamera, InEnableLighting)
     {
+        set_enable_lighting_calc();
         if (!bEnableLighting)
             return;
         
@@ -167,5 +192,12 @@ public:
         const string& pointLightName = "spotLight";
         model_shader_.setVec3(pointLightName + ".position", camera_.Position);
         model_shader_.setVec3(pointLightName + ".direction", camera_.Front);
+    }
+
+    void set_enable_lighting_calc() const
+    {
+        // 设置Shader代码里面的光照计算是否启用
+        model_shader_.use();
+        model_shader_.setBool("spotLight.enable", bEnableLighting);
     }
 };

@@ -12,6 +12,7 @@ struct Material {
 };
 
 struct DirLight {
+    bool enable;
     vec3 direction;
 
     vec3 ambient;
@@ -21,6 +22,7 @@ struct DirLight {
 uniform DirLight dirLight;
 
 struct PointLight {
+    bool enable;
     vec3 position;
 
     float constant;
@@ -35,6 +37,7 @@ struct PointLight {
 uniform PointLight pointLights[NR_POINT_LIGHTS];
 
 struct SpotLight {
+    bool enable;
     vec3 position;
     vec3 direction;
     float cutOff;
@@ -64,14 +67,14 @@ void main()
     vec3 viewDir = normalize(viewPos - FragPos);
 
     // 第一阶段：定向光照
-   /** vec3 result = CalcDirLight(dirLight, norm, viewDir);
+    vec3 result = CalcDirLight(dirLight, norm, viewDir);
     // 第二阶段：点光源
     for(int i = 0; i < NR_POINT_LIGHTS; i++)
     {
         result += CalcPointLight(pointLights[i], norm, FragPos, viewDir);
-    }*/
+    }
     // 第三阶段：聚光
-    vec3 result = CalcSpotLight(spotLight, norm, FragPos, viewDir);    
+    result += CalcSpotLight(spotLight, norm, FragPos, viewDir);    
 
     FragColor = vec4(result, 1.0);
     //FragColor = vec4(vec3(texture(texture_diffuse1, TexCoords)), 1.f);
@@ -79,6 +82,9 @@ void main()
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
 {
+    if (!light.enable)
+        return vec3(0);
+    
     vec3 lightDir = normalize(-light.direction);
     // 漫反射着色
     float diff = max(dot(normal, lightDir), 0.0);
@@ -94,6 +100,9 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
 
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
+    if (!light.enable)
+        return vec3(0);
+    
     vec3 lightDir = normalize(light.position - fragPos);
     // 漫反射着色
     float diff = max(dot(normal, lightDir), 0.0);
@@ -116,6 +125,9 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 
 vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 {
+    if (!light.enable)
+        return vec3(0);
+    
     vec3 lightDir = normalize(fragPos - light.position);
     float theta     = dot(lightDir, normalize(light.direction));
     float epsilon   = light.cutOff - light.outerCutOff;
