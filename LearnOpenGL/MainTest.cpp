@@ -219,6 +219,8 @@ int main()
         // --------------------------------------------------------------------
         glStencilFunc(GL_ALWAYS, 1, 0xFF);
         glStencilMask(0xFF);
+        glStencilOp(GL_KEEP, GL_REPLACE, GL_REPLACE);
+
         // cubes
         glBindVertexArray(cubeVAO);
         glActiveTexture(GL_TEXTURE0);
