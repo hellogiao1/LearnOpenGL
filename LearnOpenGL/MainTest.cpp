@@ -92,49 +92,54 @@ int main()
     */
 
     float cubeVertices[] = {
-        // Back face
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // Bottom-left
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f, // bottom-right         
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // bottom-left
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-        // Front face
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, // top-left
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
-        // Left face
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-left
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
-        // Right face
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right         
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-         0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left     
-        // Bottom face
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
-         0.5f, -0.5f, -0.5f,  1.0f, 1.0f, // top-left
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
-        // Top face
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right     
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f  // bottom-left        
-    };
+    // Back face
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // Bottom-left
+     0.5f, -0.5f, -0.5f,  1.0f, 0.0f, // bottom-right    
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right              
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // bottom-left                
+    // Front face
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-right        
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
+    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, // top-left        
+    // Left face
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
+    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-left       
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
+    // Right face
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right      
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right          
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
+     0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
+    // Bottom face          
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
+     0.5f, -0.5f, -0.5f,  1.0f, 1.0f, // top-left        
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
+    // Top face
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right                 
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
+    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f, // bottom-left  
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f  // top-left              
+};
+
+/* Also make sure to add a call to OpenGL to specify that triangles defined by a clockwise ordering 
+   are now 'front-facing' triangles so the cube is rendered as normal:
+   glFrontFace(GL_CW);
+*/
     float planeVertices[] = {
         // positions          // texture Coords 
          5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
@@ -210,7 +215,9 @@ int main()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_CULL_FACE);
-    glCullFace(GL_FRONT);
+    glCullFace(GL_BACK);
+    // 顺时针Clockwise 逆时针Counter-clockwise
+    glFrontFace(GL_CW);
     
     // shader configuration
     // --------------------
