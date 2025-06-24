@@ -21,12 +21,11 @@ void main()
     vec2( offset, -offset)  // 右下
     );
 
-    // 由于所有值的和是16，所以直接返回合并的采样颜色将产生非常亮的颜色，
-    // 所以我们需要将核的每个值都除以16。最终的核数组将会是：
+   // 边缘检测(Edge-detection)
     float kernel[9] = float[](
-        1.0 / 16, 2.0 / 16, 1.0 / 16,
-        2.0 / 16, 4.0 / 16, 2.0 / 16,
-        1.0 / 16, 2.0 / 16, 1.0 / 16
+        1.0, 1.0, 1.0,
+        1.0, -8.0,1.0,
+        1.0, 1.0, 1.0
     );
 
     vec3 sampleTex[9];
@@ -36,7 +35,7 @@ void main()
     }
     vec3 col = vec3(0.0);
     for(int i = 0; i < 9; i++)
-    col += sampleTex[i] * kernel[i];
+        col += sampleTex[i] * kernel[i];
 
     FragColor = vec4(col, 1.0);
 }
