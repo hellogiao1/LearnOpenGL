@@ -212,12 +212,14 @@ int main()
     // shader configuration
     // --------------------
     shader.use();
-    shader.setInt("skybox", 0);
+    shader.setInt("skybox", 2);
 
     skyboxShader.use();
     skyboxShader.setInt("skybox", 0);
+    
+    //Model backpack("resources/objects/backpack/backpack.obj");
+    Model nanosuit("resources/objects/nanosuit_reflection/nanosuit.obj");
 
-    Model backpack("resources/objects/backpack/backpack.obj");
 
     // render loop
     // -----------
@@ -248,13 +250,19 @@ int main()
         shader.setMat4("projection", projection);
         shader.setVec3("viewPos", camera.Position);
         // cubes
-        glBindVertexArray(cubeVAO);
+        /*glBindVertexArray(cubeVAO);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
         glDrawArrays(GL_TRIANGLES, 0, 36);
-        glBindVertexArray(0);
+        glBindVertexArray(0);*/
 
-        backpack.Draw(shader);
+        //backpack.Draw(shader);
+        model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));
+        shader.setMat4("model", model);
+
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+        nanosuit.Draw(shader);
 
         // draw skybox as last
         glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
