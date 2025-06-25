@@ -7,6 +7,7 @@
 
 #include "stb_image.h"
 #include "camera.h"
+#include "model.h"
 #include "shader_s.h"
 using namespace std;
 
@@ -216,6 +217,8 @@ int main()
     skyboxShader.use();
     skyboxShader.setInt("skybox", 0);
 
+    Model backpack("resources/objects/backpack/backpack.obj");
+
     // render loop
     // -----------
     while (!glfwWindowShouldClose(window))
@@ -250,6 +253,8 @@ int main()
         glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
+
+        backpack.Draw(shader);
 
         // draw skybox as last
         glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
