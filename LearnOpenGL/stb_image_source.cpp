@@ -6,6 +6,10 @@
 #include "stb_image.h"
 #include "camera.h"
 #include "shader_s.h"
+using namespace std;
+
+#include <iostream>
+#include <vector>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
