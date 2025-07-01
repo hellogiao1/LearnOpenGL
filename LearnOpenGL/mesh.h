@@ -44,7 +44,6 @@ public:
     vector<unsigned int> indices;
     vector<Texture>      textures;
     unsigned int VAO;
-    bool bNotExistSpecularTexture = false;
 
     // constructor
     Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures)
@@ -90,13 +89,11 @@ public:
             // and finally bind the texture
             glBindTexture(GL_TEXTURE_2D, textures[i].id);
         }
-
-        shader.setBool("bNotExistSpecularTexture", bNotExistSpecularTexture);
         
         // draw mesh
         err = glGetError();
         if (err != GL_NO_ERROR) {
-            std::cerr << "OpenGL error: " << err << __func__ << std::endl;
+            std::cerr << "OpenGL error: " << err << std::endl;
         }
         glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
