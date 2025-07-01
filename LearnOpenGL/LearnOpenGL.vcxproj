@@ -238,10 +238,17 @@
     <ClInclude Include="mesh.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Utility\assertions.h" />
+    <ClInclude Include="Utility\CheckAndLogTestSuite.h" />
+    <ClInclude Include="Utility\FileSystemUtils.h" />
+    <ClInclude Include="Utility\logging.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="framebuffers_screen.frag" />
     <Content Include="framebuffers_screen.vert" />
+    <Content Include="Shader\9.2\9.2.geometry_shader.frag" />
+    <Content Include="Shader\9.2\9.2.geometry_shader.geom" />
+    <Content Include="Shader\9.2\9.2.geometry_shader.vert" />
     <Content Include="skybox.frag" />
     <Content Include="skybox.vert" />
   </ItemGroup>
