@@ -62,6 +62,7 @@ public:
         GLenum err = glGetError();
         if (err != GL_NO_ERROR) {
             std::cerr << "OpenGL error: " << err << std::endl;
+            CHECK(0);
         }
         glBindVertexArray(VAO);
         // bind appropriate textures
@@ -94,12 +95,14 @@ public:
         err = glGetError();
         if (err != GL_NO_ERROR) {
             std::cerr << "OpenGL error: " << err << std::endl;
+            CHECK(0);
         }
         glDrawElements(GL_TRIANGLES, static_cast<unsigned int>(indices.size()), GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
         err = glGetError();
         if (err != GL_NO_ERROR) {
             std::cerr << "OpenGL error: " << err << std::endl;
+            CHECK(0);
         }
 
         // always good practice to set everything back to defaults once configured.

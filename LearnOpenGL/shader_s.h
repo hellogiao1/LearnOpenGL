@@ -158,6 +158,7 @@ public:
         GLenum err = glGetError();
         if (err != GL_NO_ERROR) {
             std::cerr << "OpenGL error: " << err << std::endl;
+            CHECK(0);
         }
     }
     
