@@ -73,11 +73,13 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shader("9.2/9.2.geometry_shader.vs", "9.2/9.2.geometry_shader.fs", "9.2/9.2.geometry_shader.gs");
+    Shader shader("9.3/9.3.default.vs", "9.3/9.3.default.fs");
+    Shader normalShader("9.3/9.3.normal_visualization.vs", "9.3/9.3.normal_visualization.fs", "9.3/9.3.normal_visualization.gs");
 
     // load models
     // -----------
-    Model nanosuit("resources/objects/nanosuit_reflection/nanosuit.obj"); 
+    stbi_set_flip_vertically_on_load(true);
+    Model backpack("resources/objects/backpack/backpack.obj");
 
     // render loop
     // -----------
@@ -100,18 +102,23 @@ int main()
 
         // configure transformation matrices
         glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 1.0f, 100.0f);
-        glm::mat4 view = camera.GetViewMatrix();
+        glm::mat4 view = camera.GetViewMatrix();;
         glm::mat4 model = glm::mat4(1.0f);
         shader.use();
         shader.setMat4("projection", projection);
         shader.setMat4("view", view);
         shader.setMat4("model", model);
 
-        // add time component to geometry shader in the form of a uniform
-        shader.setFloat("time", static_cast<float>(glfwGetTime()));
+        // draw model as usual
+        backpack.Draw(shader);
 
-        // draw model
-        nanosuit.Draw(shader);
+        // then draw model with normal visualizing geometry shader
+        normalShader.use();
+        normalShader.setMat4("projection", projection);
+        normalShader.setMat4("view", view);
+        normalShader.setMat4("model", model);
+
+        backpack.Draw(normalShader);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------

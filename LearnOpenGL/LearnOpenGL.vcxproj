@@ -249,6 +249,11 @@
     <Content Include="Shader\9.2\9.2.geometry_shader.frag" />
     <Content Include="Shader\9.2\9.2.geometry_shader.geom" />
     <Content Include="Shader\9.2\9.2.geometry_shader.vert" />
+    <Content Include="Shader\9.3\9.3.default.frag" />
+    <Content Include="Shader\9.3\9.3.default.vert" />
+    <Content Include="Shader\9.3\9.3.normal_visualization.frag" />
+    <Content Include="Shader\9.3\9.3.normal_visualization.geom" />
+    <Content Include="Shader\9.3\9.3.normal_visualization.vert" />
     <Content Include="skybox.frag" />
     <Content Include="skybox.vert" />
   </ItemGroup>
