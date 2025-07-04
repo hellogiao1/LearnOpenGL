@@ -246,6 +246,8 @@
   <ItemGroup>
     <Content Include="framebuffers_screen.frag" />
     <Content Include="framebuffers_screen.vert" />
+    <Content Include="Shader\10.2\10.2.instancing.frag" />
+    <Content Include="Shader\10.2\10.2.instancing.vert" />
     <Content Include="Shader\9.2\9.2.geometry_shader.frag" />
     <Content Include="Shader\9.2\9.2.geometry_shader.geom" />
     <Content Include="Shader\9.2\9.2.geometry_shader.vert" />
