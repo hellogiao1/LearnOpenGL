@@ -92,6 +92,10 @@ void main()
     vec3 result = (ambient + diffuse + specular);
 
     FragColor = vec4(result, 1.0);
+
+    // 应用伽马矫正
+    float gamma = 2.2;
+    //FragColor.rgb = pow(FragColor.rgb, vec3(1.0/gamma));
 }
 
 vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)

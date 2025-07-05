@@ -227,6 +227,8 @@
     <None Include="Shader\11.2\11.2.aa_post.vert" />
     <None Include="Shader\AdvancedLighting\1.advanced_lighting.frag" />
     <None Include="Shader\AdvancedLighting\1.advanced_lighting.vert" />
+    <None Include="Shader\AdvancedLighting\2.gamma_correction.frag" />
+    <None Include="Shader\AdvancedLighting\2.gamma_correction.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
