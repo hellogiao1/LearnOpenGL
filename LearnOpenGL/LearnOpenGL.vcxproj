@@ -225,6 +225,8 @@
     <None Include="light_cube.vert" />
     <None Include="Shader\11.2\11.2.aa_post.frag" />
     <None Include="Shader\11.2\11.2.aa_post.vert" />
+    <None Include="Shader\AdvancedLighting\1.advanced_lighting.frag" />
+    <None Include="Shader\AdvancedLighting\1.advanced_lighting.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />

@@ -29,6 +29,13 @@ public:
         bEnableLighting = InEnableLighting;
     }
 
+    ~LightBase()
+    {
+        glDeleteVertexArrays(1, &cubeVAO);
+        glDeleteVertexArrays(1, &lightCubeVAO);
+        glDeleteBuffers(1, &VBO);
+    }
+
 protected:
     void SetUp();
 
