@@ -35,21 +35,22 @@ public:
         std::string directoryPath = FileSystem::GetDirectoryPath(OutPath);
         if (extension == "vs")
         {
-            extension = ".vert";
+            extension = "vert";
         }
         else if (extension == "fs")
         {
-            extension = ".frag";
+            extension = "frag";
         }
         else if (extension == "gs")
         {
-            extension = ".geom";
+            extension = "geom";
         }
 
-        std::string fullPath = directoryPath + filenameWithoutExtension + extension;
+        std::string fullPath = directoryPath + filenameWithoutExtension + "." + extension;
 
-        if (fileExists(OutPath)) {
+        if (fileExists(fullPath)) {
             // 文件存在
+            OutPath = fullPath;
             return true;
         }
 
