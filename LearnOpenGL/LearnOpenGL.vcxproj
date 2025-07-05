@@ -223,6 +223,8 @@
     <None Include="lighting.vert" />
     <None Include="light_cube.frag" />
     <None Include="light_cube.vert" />
+    <None Include="Shader\11.2\11.2.aa_post.frag" />
+    <None Include="Shader\11.2\11.2.aa_post.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
@@ -250,6 +252,8 @@
     <Content Include="Shader\10.2\10.2.instancing.vert" />
     <Content Include="Shader\10.3\10.3.asteroids.frag" />
     <Content Include="Shader\10.3\10.3.asteroids.vert" />
+    <Content Include="Shader\11.2\11.2.anti_aliasing.frag" />
+    <Content Include="Shader\11.2\11.2.anti_aliasing.vert" />
     <Content Include="Shader\9.2\9.2.geometry_shader.frag" />
     <Content Include="Shader\9.2\9.2.geometry_shader.geom" />
     <Content Include="Shader\9.2\9.2.geometry_shader.vert" />
@@ -262,9 +266,6 @@
     <Content Include="Shader\9.4\9.4.default.vert" />
     <Content Include="skybox.frag" />
     <Content Include="skybox.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Shader\11.1\" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
