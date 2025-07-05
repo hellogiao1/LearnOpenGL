@@ -263,6 +263,9 @@
     <Content Include="skybox.frag" />
     <Content Include="skybox.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Shader\11.1\" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
