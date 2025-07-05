@@ -229,6 +229,10 @@
     <None Include="Shader\AdvancedLighting\1.advanced_lighting.vert" />
     <None Include="Shader\AdvancedLighting\2.gamma_correction.frag" />
     <None Include="Shader\AdvancedLighting\2.gamma_correction.vert" />
+    <None Include="Shader\AdvancedLighting\3.1.1.shadow_mapping_depth.frag" />
+    <None Include="Shader\AdvancedLighting\3.1.1.shadow_mapping_depth.vert" />
+    <None Include="Shader\AdvancedLighting\3.1.1.debug_quad.frag" />
+    <None Include="Shader\AdvancedLighting\3.1.1.debug_quad.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
