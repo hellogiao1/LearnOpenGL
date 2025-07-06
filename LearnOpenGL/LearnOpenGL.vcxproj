@@ -235,6 +235,10 @@
     <None Include="Shader\AdvancedLighting\3.1.1.debug_quad.vert" />
     <None Include="Shader\AdvancedLighting\3.1.2.shadow_mapping.frag" />
     <None Include="Shader\AdvancedLighting\3.1.2.shadow_mapping.vert" />
+    <None Include="Shader\AdvancedLighting\3.2.1.point_shadows.frag" />
+    <None Include="Shader\AdvancedLighting\3.2.1.point_shadows.vert" />
+    <None Include="Shader\AdvancedLighting\3.2.1.point_shadows_depth.frag" />
+    <None Include="Shader\AdvancedLighting\3.2.1.point_shadows_depth.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
@@ -274,6 +278,7 @@
     <Content Include="Shader\9.3\9.3.normal_visualization.vert" />
     <Content Include="Shader\9.4\9.4.default.frag" />
     <Content Include="Shader\9.4\9.4.default.vert" />
+    <Content Include="Shader\AdvancedLighting\3.2.1.point_shadows_depth.geom" />
     <Content Include="skybox.frag" />
     <Content Include="skybox.vert" />
   </ItemGroup>
