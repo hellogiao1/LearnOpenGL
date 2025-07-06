@@ -8,6 +8,7 @@
 #include <iostream>
 
 #include "camera.h"
+#include "model.h"
 #include "shader_s.h"
 #include "stb_image.h"
 
@@ -89,9 +90,13 @@ int main()
     shader.setInt("diffuseMap", 0);
     shader.setInt("normalMap", 1);
 
+    stbi_set_flip_vertically_on_load(true);
+    Model myModel("resources/objects/backpack/backpack.obj");
+    Shader modelShader("AdvancedLighting/4.model_normal_mapping.vs", "AdvancedLighting/4.model_normal_mapping.fs");
+
     // lighting info
     // -------------
-    glm::vec3 lightPos(0.5f, 1.0f, 0.3f);
+    glm::vec3 lightPos(0.5f, 1.0f, 1.f);
 
     // render loop
     // -----------
@@ -120,6 +125,7 @@ int main()
         shader.setMat4("view", view);
         // render normal-mapped quad
         glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-3.0f, 0.0f, 0.0f));
         model = glm::rotate(model, glm::radians((float)glfwGetTime() * -10.0f), glm::normalize(glm::vec3(1.0, 0.0, 1.0))); // rotate the quad to show normal mapping from multiple directions
         shader.setMat4("model", model);
         shader.setVec3("viewPos", camera.Position);
@@ -136,6 +142,15 @@ int main()
         model = glm::scale(model, glm::vec3(0.1f));
         shader.setMat4("model", model);
         renderQuad();
+
+        modelShader.use();
+        model = glm::mat4(1.0f);
+        modelShader.setMat4("model", model);
+        modelShader.setMat4("projection", projection);
+        modelShader.setMat4("view", view);
+        modelShader.setVec3("viewPos", camera.Position);
+        modelShader.setVec3("lightPos", lightPos);
+        myModel.Draw(modelShader);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
