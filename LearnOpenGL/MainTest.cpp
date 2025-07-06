@@ -23,7 +23,8 @@ void renderQuad();
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-float Bias = 0.005;
+// Options
+bool shadows = true;
 
 // camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
@@ -173,6 +174,11 @@ int main()
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+        // Change light position over time
+        // lightPos.x = sin(glfwGetTime()) * 3.0f;
+        // lightPos.z = cos(glfwGetTime()) * 2.0f;
+        // lightPos.y = 5.0 + cos(glfwGetTime()) * 1.0f;
+
         // 1. render depth of scene to texture (from light's perspective)
         // --------------------------------------------------------------
         glm::mat4 lightProjection, lightView;
@@ -210,7 +216,8 @@ int main()
         shader.setVec3("viewPos", camera.Position);
         shader.setVec3("lightPos", lightPos);
         shader.setMat4("lightSpaceMatrix", lightSpaceMatrix);
-        shader.setFloat("Bias", Bias);
+        // Enable/Disable shadows by pressing 'SPACE'
+        shader.setFloat("shadows", shadows);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, woodTexture);
         glActiveTexture(GL_TEXTURE1);
@@ -395,11 +402,8 @@ void processInput(GLFWwindow *window)
         camera.ProcessKeyboard(UP, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
         camera.ProcessKeyboard(DOWN, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
-        Bias += 0.01 * deltaTime;
-    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
-        Bias -= 0.01 * deltaTime;
-
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+        shadows = !shadows;
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes
