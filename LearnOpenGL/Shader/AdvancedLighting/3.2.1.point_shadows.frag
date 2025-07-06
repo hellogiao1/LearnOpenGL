@@ -27,10 +27,35 @@ float ShadowCalculation(vec3 fragPos)
     // now get current linear depth as the length between the fragment and light position
     float currentDepth = length(fragToLight);
     // test for shadows
-    float bias = 0.05; // we use a much larger bias since depth is now in [near_plane, far_plane] range
-    float shadow = currentDepth -  bias > closestDepth ? 1.0 : 0.0;
+    //float bias = 0.05; // we use a much larger bias since depth is now in [near_plane, far_plane] range
+    //float shadow = currentDepth -  bias > closestDepth ? 1.0 : 0.0;
     // display closestDepth as debug (to visualize depth cubemap)
-    FragColor = vec4(vec3(closestDepth / far_plane), 1.0);    
+    // FragColor = vec4(vec3(closestDepth / far_plane), 1.0);
+
+    vec3 sampleOffsetDirections[20] = vec3[]
+    (
+        vec3( 1,  1,  1), vec3( 1, -1,  1), vec3(-1, -1,  1), vec3(-1,  1,  1),
+        vec3( 1,  1, -1), vec3( 1, -1, -1), vec3(-1, -1, -1), vec3(-1,  1, -1),
+        vec3( 1,  1,  0), vec3( 1, -1,  0), vec3(-1, -1,  0), vec3(-1,  1,  0),
+        vec3( 1,  0,  1), vec3(-1,  0,  1), vec3( 1,  0, -1), vec3(-1,  0, -1),
+        vec3( 0,  1,  1), vec3( 0, -1,  1), vec3( 0, -1, -1), vec3( 0,  1, -1)
+    );
+
+    float shadow = 0.0;
+    float bias   = 0.15;
+    int samples  = 20;
+    float viewDistance = length(viewPos - fragPos);
+    // 我们可以在这里应用的另一个有趣技巧是，我们可以根据查看器到片段的距离来更改 diskRadius，
+    // 使阴影在远处时更柔和，在近处时更清晰。
+    float diskRadius = (1.0 + (viewDistance / far_plane)) / 25.0;
+    for(int i = 0; i < samples; ++i)
+    {
+        float closestDepth = texture(depthMap, fragToLight + sampleOffsetDirections[i] * diskRadius).r;
+        closestDepth *= far_plane;   // undo mapping [0;1]
+        if(currentDepth - bias > closestDepth)
+        shadow += 1.0;
+    }
+    shadow /= float(samples);
 
     return shadow;
 }
