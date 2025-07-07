@@ -77,7 +77,7 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shader("AdvancedLighting/5.2.parallax_mapping.vs", "AdvancedLighting/5.2.parallax_mapping.fs");
+    Shader shader("AdvancedLighting/5.3.parallax_mapping.vs", "AdvancedLighting/5.3.parallax_mapping.fs");
 
     // load textures
     // -------------
