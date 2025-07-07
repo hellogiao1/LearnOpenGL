@@ -77,16 +77,16 @@ int main()
 
     // build and compile shaders
     // -------------------------
-    Shader shader("AdvancedLighting/5.1.parallax_mapping.vs", "AdvancedLighting/5.1.parallax_mapping.fs");
+    Shader shader("AdvancedLighting/5.2.parallax_mapping.vs", "AdvancedLighting/5.2.parallax_mapping.fs");
 
     // load textures
     // -------------
-    unsigned int diffuseMap = loadTexture("resources/textures/bricks2.jpg");
-    unsigned int normalMap  = loadTexture("resources/textures/bricks2_normal.jpg");
-    unsigned int heightMap  = loadTexture("resources/textures/bricks2_disp.jpg");
-   /* unsigned int diffuseMap = loadTexture(FileSystem::getPath("resources/textures/toy_box_diffuse.png").c_str());
-    unsigned int normalMap = loadTexture(FileSystem::getPath("resources/textures/toy_box_normal.png").c_str());
-    unsigned int heightMap = loadTexture(FileSystem::getPath("resources/textures/toy_box_disp.png").c_str());*/
+    /*unsigned int diffuseMap = loadTexture("resources/textures/bricks2.jpg");
+    unsigned int normalMap = loadTexture("resources/textures/bricks2_normal.jpg");
+    unsigned int heightMap = loadTexture("resources/textures/bricks2_disp.jpg");*/
+    unsigned int diffuseMap = loadTexture("resources/textures/wood.png");
+    unsigned int normalMap = loadTexture("resources/textures/toy_box_normal.png");
+    unsigned int heightMap = loadTexture("resources/textures/toy_box_disp.png");
 
     // shader configuration
     // --------------------
@@ -269,18 +269,18 @@ void processInput(GLFWwindow *window)
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
 
-    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS) 
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
     {
-        if (heightScale > 0.0f) 
+        if (heightScale > 0.0f)
             heightScale -= 0.0005f;
-        else 
+        else
             heightScale = 0.0f;
     }
-    else if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) 
+    else if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
     {
-        if (heightScale < 1.0f) 
+        if (heightScale < 1.0f)
             heightScale += 0.0005f;
-        else 
+        else
             heightScale = 1.0f;
     }
 }
