@@ -243,6 +243,8 @@
     <None Include="Shader\AdvancedLighting\4.model_normal_mapping.frag" />
     <None Include="Shader\AdvancedLighting\4.normal_mapping.frag" />
     <None Include="Shader\AdvancedLighting\4.normal_mapping.vert" />
+    <None Include="Shader\AdvancedLighting\5.1.parallax_mapping.frag" />
+    <None Include="Shader\AdvancedLighting\5.1.parallax_mapping.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
