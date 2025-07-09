@@ -253,6 +253,13 @@
     <None Include="Shader\AdvancedLighting\6.lighting.vert" />
     <None Include="Shader\AdvancedLighting\6.hdr.frag" />
     <None Include="Shader\AdvancedLighting\6.hdr.vert" />
+    <None Include="Shader\AdvancedLighting\7.bloom.frag" />
+    <None Include="Shader\AdvancedLighting\7.bloom.vert" />
+    <None Include="Shader\AdvancedLighting\7.light_box.frag" />
+    <None Include="Shader\AdvancedLighting\7.blur.frag" />
+    <None Include="Shader\AdvancedLighting\7.blur.vert" />
+    <None Include="Shader\AdvancedLighting\7.bloom_final.frag" />
+    <None Include="Shader\AdvancedLighting\7.bloom_final.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
