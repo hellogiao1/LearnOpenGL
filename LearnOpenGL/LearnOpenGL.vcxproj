@@ -260,6 +260,12 @@
     <None Include="Shader\AdvancedLighting\7.blur.vert" />
     <None Include="Shader\AdvancedLighting\7.bloom_final.frag" />
     <None Include="Shader\AdvancedLighting\7.bloom_final.vert" />
+    <None Include="Shader\AdvancedLighting\8.1.g_buffer.frag" />
+    <None Include="Shader\AdvancedLighting\8.1.g_buffer.vert" />
+    <None Include="Shader\AdvancedLighting\8.1.deferred_shading.frag" />
+    <None Include="Shader\AdvancedLighting\8.1.deferred_shading.vert" />
+    <None Include="Shader\AdvancedLighting\8.1.deferred_light_box.frag" />
+    <None Include="Shader\AdvancedLighting\8.1.deferred_light_box.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
