@@ -312,6 +312,7 @@
     <Content Include="Shader\9.4\9.4.default.frag" />
     <Content Include="Shader\9.4\9.4.default.vert" />
     <Content Include="Shader\AdvancedLighting\3.2.1.point_shadows_depth.geom" />
+    <Content Include="Shader\AdvancedLighting\SSAO的算法理解.md" />
     <Content Include="skybox.frag" />
     <Content Include="skybox.vert" />
   </ItemGroup>
