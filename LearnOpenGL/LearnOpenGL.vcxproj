@@ -266,6 +266,12 @@
     <None Include="Shader\AdvancedLighting\8.1.deferred_shading.vert" />
     <None Include="Shader\AdvancedLighting\8.1.deferred_light_box.frag" />
     <None Include="Shader\AdvancedLighting\8.1.deferred_light_box.vert" />
+    <None Include="Shader\AdvancedLighting\9.ssao_geometry.frag" />
+    <None Include="Shader\AdvancedLighting\9.ssao_geometry.vert" />
+    <None Include="Shader\AdvancedLighting\9.ssao.frag" />
+    <None Include="Shader\AdvancedLighting\9.ssao.vert" />
+    <None Include="Shader\AdvancedLighting\9.ssao_lighting.frag" />
+    <None Include="Shader\AdvancedLighting\9.ssao_blur.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
