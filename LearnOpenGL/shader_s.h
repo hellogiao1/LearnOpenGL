@@ -177,6 +177,11 @@ public:
         glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(trans));
         printError();
     }
+    void setMat3(const std::string& name, const glm::mat3& trans = glm::mat3(1.f)) const
+    {
+        glUniformMatrix3fv(glGetUniformLocation(ID, name.c_str()), 1, GL_FALSE, glm::value_ptr(trans));
+        printError();
+    }
     // ------------------------------------------------------------------------
     void setVec3(const std::string& name, float value1, float value2, float value3) const
     {
