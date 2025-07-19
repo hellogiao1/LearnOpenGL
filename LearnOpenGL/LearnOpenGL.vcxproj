@@ -274,6 +274,8 @@
     <None Include="Shader\AdvancedLighting\9.ssao_blur.frag" />
     <None Include="Shader\PBR\1.1.pbr.frag" />
     <None Include="Shader\PBR\1.1.pbr.vert" />
+    <None Include="Shader\PBR\1.2.pbr.frag" />
+    <None Include="Shader\PBR\1.2.pbr.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
