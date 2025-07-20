@@ -276,6 +276,12 @@
     <None Include="Shader\PBR\1.1.pbr.vert" />
     <None Include="Shader\PBR\1.2.pbr.frag" />
     <None Include="Shader\PBR\1.2.pbr.vert" />
+    <None Include="Shader\PBR\EquirectangularMap\2.1.1.pbr.frag" />
+    <None Include="Shader\PBR\EquirectangularMap\2.1.1.pbr.vert" />
+    <None Include="Shader\PBR\EquirectangularMap\2.1.1.equirectangular_to_cubemap.frag" />
+    <None Include="Shader\PBR\EquirectangularMap\2.1.1.cubemap.vert" />
+    <None Include="Shader\PBR\EquirectangularMap\2.1.1.background.frag" />
+    <None Include="Shader\PBR\EquirectangularMap\2.1.1.background.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
