@@ -289,6 +289,16 @@
     <None Include="Shader\PBR\EquirectangularMap\2.1.1.cubemap.vert" />
     <None Include="Shader\PBR\EquirectangularMap\2.1.1.background.frag" />
     <None Include="Shader\PBR\EquirectangularMap\2.1.1.background.vert" />
+    <None Include="Shader\PBR\SpecularIBL\2.2.2.irradiance_convolution.frag" />
+    <None Include="Shader\PBR\SpecularIBL\2.2.2.background.frag" />
+    <None Include="Shader\PBR\SpecularIBL\2.2.2.background.vert" />
+    <None Include="Shader\PBR\SpecularIBL\2.2.2.cubemap.vert" />
+    <None Include="Shader\PBR\SpecularIBL\2.2.2.equirectangular_to_cubemap.frag" />
+    <None Include="Shader\PBR\SpecularIBL\2.2.2.pbr.frag" />
+    <None Include="Shader\PBR\SpecularIBL\2.2.2.pbr.vert" />
+    <None Include="Shader\PBR\SpecularIBL\2.2.2.prefilter.frag" />
+    <None Include="Shader\PBR\SpecularIBL\2.2.2.brdf.frag" />
+    <None Include="Shader\PBR\SpecularIBL\2.2.2.brdf.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
