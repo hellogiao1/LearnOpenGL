@@ -136,6 +136,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BreakOutGame\game.cpp" />
+    <ClCompile Include="BreakOutGame\resource_manager.cpp" />
+    <ClCompile Include="BreakOutGame\shader.cpp" />
+    <ClCompile Include="BreakOutGame\texture.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="imgui-master\backends\imgui_impl_glfw.cpp" />
     <ClCompile Include="imgui-master\backends\imgui_impl_opengl3.cpp" />
@@ -307,6 +311,10 @@
     <None Include="Shader\TextRendering\text.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BreakOutGame\game.h" />
+    <ClInclude Include="BreakOutGame\resource_manager.h" />
+    <ClInclude Include="BreakOutGame\shader.h" />
+    <ClInclude Include="BreakOutGame\texture.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="imgui-master\backends\imgui_impl_glfw.h" />
     <ClInclude Include="imgui-master\backends\imgui_impl_opengl3.h" />
