@@ -14,7 +14,7 @@
 #include <map>
 #include <string>
 
-#include <glad/glad.h>
+#include "../HeadIncluces.h"
 
 #include "texture.h"
 #include "shader.h"

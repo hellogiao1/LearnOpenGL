@@ -3,12 +3,12 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include <glad/glad.h>
 
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include "../HeadIncluces.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
