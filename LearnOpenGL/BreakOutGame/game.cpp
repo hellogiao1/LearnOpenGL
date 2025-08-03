@@ -15,6 +15,9 @@
 #include "TextRenderer.h"
 
 #include "game.h"
+
+#include <iostream>
+
 #include "resource_manager.h"
 
 
@@ -42,6 +45,15 @@ Game::~Game()
     delete Particles;
     delete Effects;
     delete Text;
+    // 释放资源
+    Mix_FreeMusic(bgm);
+    Mix_FreeChunk(bleep_wav);
+    Mix_FreeChunk(bleep_mp3);
+    Mix_FreeChunk(solid);
+    Mix_FreeChunk(powerup);
+    Mix_CloseAudio();
+    Mix_Quit();
+    SDL_Quit();
 }
 
 void Game::Init()
@@ -91,6 +103,44 @@ void Game::Init()
     glm::vec2 ballPos = playerPos + glm::vec2(PLAYER_SIZE.x / 2 - BALL_RADIUS, -BALL_RADIUS * 2);
     Ball = new BallObject(ballPos, BALL_RADIUS, INITIAL_BALL_VELOCITY, ResourceManager::GetTexture("face"));
     // Audio
+    initAudio();
+}
+
+void Game::initAudio()
+{
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+        std::cout << "SDL_Init error:" << SDL_GetError() << std::endl;
+    }
+
+    // 初始化支持 MP3/OGG 等格式
+    int flags = MIX_INIT_MP3 | MIX_INIT_OGG;
+    int initted = Mix_Init(flags);
+    if ((initted & flags) != flags) {
+        std::cout << "Mix_Init error:" << Mix_GetError() << std::endl;
+    }
+
+    // 打开音频设备
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        std::cout << "Mix_OpenAudio error:" << Mix_GetError() << std::endl;
+    }
+
+    // 加载背景音乐（支持 mp3/ogg/wav 等）
+    bgm = Mix_LoadMUS("resources/musics/breakout.mp3");
+    if (!bgm) {
+        std::cout << "Mix_LoadMUS error:" << Mix_GetError() << std::endl;
+    }
+
+    // 加载音效（支持 wav/ogg 等）
+    bleep_wav = Mix_LoadWAV("resources/musics/bleep.wav");
+    if (!bleep_wav) {
+        std::cout << "Mix_LoadWAV error:" << Mix_GetError()  << std::endl;
+    }
+    bleep_mp3 = Mix_LoadWAV("resources/musics/bleep.mp3");
+    solid = Mix_LoadWAV("resources/musics/solid.wav");
+    powerup = Mix_LoadWAV("resources/musics/powerup.wav");
+
+
+    Mix_PlayMusic(bgm, -1); // -1 表示无限循环
 }
 
 void Game::Update(GLfloat dt)
@@ -404,11 +454,13 @@ void Game::DoCollisions()
                 {
                     box.Destroyed = GL_TRUE;
                     this->SpawnPowerUps(box);
+                    Mix_PlayChannel(-1, bleep_mp3, 0); // -1 自动选择通道，0 表示播放一次
                 }
                 else
                 {   // if block is solid, enable shake effect
                     ShakeTime = 0.05f;
                     Effects->Shake = GL_TRUE;
+                    Mix_PlayChannel(-1, solid, 0); // -1 自动选择通道，0 表示播放一次
                 }
                 // Collision resolution
                 Direction dir = std::get<1>(collision);
@@ -454,6 +506,7 @@ void Game::DoCollisions()
                 ActivatePowerUp(powerUp);
                 powerUp.Destroyed = GL_TRUE;
                 powerUp.Activated = GL_TRUE;
+                Mix_PlayChannel(-1, powerup, 0); // -1 自动选择通道，0 表示播放一次
             }
         }
     }
@@ -477,7 +530,7 @@ void Game::DoCollisions()
 
         // If Sticky powerup is activated, also stick ball to paddle once new velocity vectors were calculated
         Ball->Stuck = Ball->Sticky;
-
+        Mix_PlayChannel(-1, bleep_wav, 0); // -1 自动选择通道，0 表示播放一次
     }
 }
 

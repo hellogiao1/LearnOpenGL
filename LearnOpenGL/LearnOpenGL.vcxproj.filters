@@ -51,6 +51,42 @@
     <ClCompile Include="Light\LightCombine.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="BreakOutGame\BallObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakOutGame\game.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakOutGame\GameLevel.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakOutGame\GameObject.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakOutGame\ParticleGenerator.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakOutGame\PostProcessor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakOutGame\PowerUp.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakOutGame\resource_manager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakOutGame\shader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakOutGame\SpriteRenderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakOutGame\TextRenderer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BreakOutGame\texture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="lighting.frag" />
@@ -133,6 +169,8 @@
     <None Include="Shader\PBR\SpecularIBL\2.2.2.prefilter.frag" />
     <None Include="Shader\PBR\SpecularIBL\2.2.2.brdf.frag" />
     <None Include="Shader\PBR\SpecularIBL\2.2.2.brdf.vert" />
+    <None Include="Shader\TextRendering\text.frag" />
+    <None Include="Shader\TextRendering\text.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -184,6 +222,45 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Utility\logging.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\BallObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\game.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\GameLevel.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\GameObject.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\ParticleGenerator.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\PostProcessor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\PowerUp.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\resource_manager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\shader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\SpriteRenderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\TextRenderer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BreakOutGame\texture.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HeadIncluces.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

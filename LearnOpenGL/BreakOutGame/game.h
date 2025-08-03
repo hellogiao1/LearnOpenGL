@@ -10,6 +10,8 @@
 #define GAME_H
 #include <vector>
 #include <tuple>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 #include <GLFW/glfw3.h>
 
@@ -74,6 +76,14 @@ public:
     // Powerups
     void SpawnPowerUps(GameObject &block);
     void UpdatePowerUps(GLfloat dt);
+
+    void initAudio();
+
+    Mix_Music* bgm;
+    Mix_Chunk* bleep_wav; //小球在挡板上反弹时的音效
+    Mix_Chunk* bleep_mp3; //小球撞击非实心砖块时的音效
+    Mix_Chunk* solid; //小球撞击实心砖块时的音效
+    Mix_Chunk* powerup; //获得道具时的音效
 };
 
 #endif

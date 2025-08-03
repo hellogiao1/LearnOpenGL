@@ -70,7 +70,12 @@ int main(int argc, char *argv[])
         // --------------------
         float currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
+        if (deltaTime < 1.0/60.0)
+        {
+            continue;
+        }
         lastFrame = currentFrame;
+
         glfwPollEvents();
 
         // manage user input
