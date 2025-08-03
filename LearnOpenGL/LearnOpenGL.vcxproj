@@ -146,6 +146,7 @@
     <ClCompile Include="BreakOutGame\resource_manager.cpp" />
     <ClCompile Include="BreakOutGame\shader.cpp" />
     <ClCompile Include="BreakOutGame\SpriteRenderer.cpp" />
+    <ClCompile Include="BreakOutGame\TextRenderer.cpp" />
     <ClCompile Include="BreakOutGame\texture.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="imgui-master\backends\imgui_impl_glfw.cpp" />
@@ -328,6 +329,7 @@
     <ClInclude Include="BreakOutGame\resource_manager.h" />
     <ClInclude Include="BreakOutGame\shader.h" />
     <ClInclude Include="BreakOutGame\SpriteRenderer.h" />
+    <ClInclude Include="BreakOutGame\TextRenderer.h" />
     <ClInclude Include="BreakOutGame\texture.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="HeadIncluces.h" />
@@ -375,6 +377,8 @@
     <Content Include="Shader\BreakOutGame\particle.vert" />
     <Content Include="Shader\BreakOutGame\sprite.frag" />
     <Content Include="Shader\BreakOutGame\sprite.vert" />
+    <Content Include="Shader\BreakOutGame\text.frag" />
+    <Content Include="Shader\BreakOutGame\text.vert" />
     <Content Include="skybox.frag" />
     <Content Include="skybox.vert" />
   </ItemGroup>
