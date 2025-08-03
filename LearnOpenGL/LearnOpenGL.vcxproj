@@ -141,6 +141,8 @@
     <ClCompile Include="BreakOutGame\GameLevel.cpp" />
     <ClCompile Include="BreakOutGame\GameObject.cpp" />
     <ClCompile Include="BreakOutGame\ParticleGenerator.cpp" />
+    <ClCompile Include="BreakOutGame\PostProcessor.cpp" />
+    <ClCompile Include="BreakOutGame\PowerUp.cpp" />
     <ClCompile Include="BreakOutGame\resource_manager.cpp" />
     <ClCompile Include="BreakOutGame\shader.cpp" />
     <ClCompile Include="BreakOutGame\SpriteRenderer.cpp" />
@@ -321,6 +323,8 @@
     <ClInclude Include="BreakOutGame\GameLevel.h" />
     <ClInclude Include="BreakOutGame\GameObject.h" />
     <ClInclude Include="BreakOutGame\ParticleGenerator.h" />
+    <ClInclude Include="BreakOutGame\PostProcessor.h" />
+    <ClInclude Include="BreakOutGame\PowerUp.h" />
     <ClInclude Include="BreakOutGame\resource_manager.h" />
     <ClInclude Include="BreakOutGame\shader.h" />
     <ClInclude Include="BreakOutGame\SpriteRenderer.h" />
@@ -365,6 +369,8 @@
     <Content Include="Shader\9.4\9.4.default.vert" />
     <Content Include="Shader\AdvancedLighting\3.2.1.point_shadows_depth.geom" />
     <Content Include="Shader\AdvancedLighting\SSAO的算法理解.md" />
+    <Content Include="Shader\BreakOutGame\post_processing.frag" />
+    <Content Include="Shader\BreakOutGame\post_processing.vert" />
     <Content Include="Shader\BreakOutGame\particle.frag" />
     <Content Include="Shader\BreakOutGame\particle.vert" />
     <Content Include="Shader\BreakOutGame\sprite.frag" />

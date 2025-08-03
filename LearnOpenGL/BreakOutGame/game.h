@@ -14,6 +14,7 @@
 #include <glm/vec2.hpp>
 
 #include "GameLevel.h"
+#include "PowerUp.h"
 
 // Represents the current state of the game
 enum GameState {
@@ -53,6 +54,7 @@ public:
     unsigned int            Width, Height;
     std::vector<GameLevel>  Levels;
     unsigned int            Level;
+    std::vector<PowerUp>   PowerUps;
     // constructor/destructor
     Game(unsigned int width, unsigned int height);
     ~Game();
@@ -66,6 +68,9 @@ public:
     // reset
     void ResetLevel();
     void ResetPlayer();
+    // Powerups
+    void SpawnPowerUps(GameObject &block);
+    void UpdatePowerUps(GLfloat dt);
 };
 
 #endif
