@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>F:\LearnRender\LearnOpenGL\LearnOpenGL\imgui-master\backends;F:\LearnRender\LearnOpenGL\LearnOpenGL\imgui-master;F:\LearnRender\TotalLibrary\includes;$(IncludePath)</IncludePath>
-    <LibraryPath>F:\LearnRender\TotalLibrary\Libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>F:\LearnRender\LearnOpenGL\LearnOpenGL\imgui-master\backends;F:\LearnRender\LearnOpenGL\LearnOpenGL\imgui-master;F:\LearnRender\TotalLibrary\includes;$(SolutionDir)TotalLibrary\includes;$(IncludePath)</IncludePath>
+    <LibraryPath>F:\LearnRender\TotalLibrary\Libs;$(SolutionDir)TotalLibrary\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
